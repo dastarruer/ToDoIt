@@ -3,12 +3,6 @@ body {
     color: white;
 }
 
-button {
-    background-color: transparent;
-    border-color: transparent;
-    color: white;
-}
-
 #header {
     margin-top: 3rem;
     margin-bottom: 2rem;
