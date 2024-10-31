@@ -1,3 +1,10 @@
+#header {
+    padding-top: 50px;
+    font-size: 20pt;
+    font-family: "JetBrains Mono";
+    font-weight: 600;
+}
+
 .container {
     display:flex;
     flex-direction: column;
@@ -5,4 +12,14 @@
     align-items: flex-start;
 
     padding-left: 50px;
+}
+
+.task {
+    font-size: 15pt;
+    padding-top: 25px;
+}
+
+.task-title {
+    font-family: "JetBrains Mono";
+    font-weight: 500;
 }
