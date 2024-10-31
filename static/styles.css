@@ -14,19 +14,20 @@ body {
 .container {
     padding-left: 50px;
 
-    display:flex;
+    display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: flex-start;
 }
 
-.task {
+.unfinished-task,
+.finished-task {
     border: 1px solid white;
     border-radius: 15px;
 
     padding-top: 15px;
     padding-bottom: 15px;
-    padding-right: 10px;
+    padding-right: 1500px;
     padding-left: 10px;
 }
 
