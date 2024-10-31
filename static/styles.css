@@ -1,3 +1,9 @@
+.task {
+    padding-left: 50px;
+    padding-bottom: 25px;
+    padding-top: 25px;
+}
+
 .container {
     display:flex;
     flex-direction: column;
