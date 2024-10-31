@@ -22,13 +22,23 @@ body {
 
 .unfinished-task,
 .finished-task {
-    border: 1px solid white;
+    border: 1px solid;
     border-radius: 15px;
 
     padding-top: 15px;
     padding-bottom: 15px;
     padding-right: 1500px;
     padding-left: 10px;
+}
+
+.finished-task {
+    color: gray;
+    border-color: gray;
+    text-decoration: line-through;
+}
+
+.unfinished-task {
+    border-color: white;
 }
 
 .task-title {
