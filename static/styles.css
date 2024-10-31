@@ -4,31 +4,33 @@ body {
 }
 
 #header {
-    padding-top: 50px;
-    padding-bottom: 30px;
-    font-size: 20pt;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+    font-size: 2rem;
     font-family: "JetBrains Mono";
     font-weight: 600;
 }
 
 .container {
-    padding-left: 50px;
+    padding-left: 3rem;
 
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: flex-start;
+
+    gap: 1rem;
 }
 
 .unfinished-task,
 .finished-task {
     border: 1px solid;
-    border-radius: 15px;
+    border-radius: 1rem;
 
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-right: 1500px;
-    padding-left: 10px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-right: 15rem;
+    padding-left: 0.5rem;
 }
 
 .finished-task {
@@ -42,7 +44,14 @@ body {
 }
 
 .task-title {
-    font-size: 15pt;
+    font-size: 1.2rem;
     font-family: "JetBrains Mono";
     font-weight: 500;
+}
+
+.description {
+    color: grey;
+    font-size: 1rem;
+    font-family: "JetBrains Mono";
+    font-style: italic;
 }
