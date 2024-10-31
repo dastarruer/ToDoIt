@@ -1,4 +1,7 @@
+addTask = document.getElementById("add-task");
+
 checkboxes = document.getElementsByClassName("checkbox");
+
 for (let checkbox of checkboxes) {
     checkbox.addEventListener("click", (event) => {
         task = checkbox.parentNode;
@@ -10,3 +13,11 @@ for (let checkbox of checkboxes) {
                 : "unfinished-task";
     });
 }
+
+// If the add task button is clicked
+addTask.addEventListener("click", (event) => {
+    taskEditor = document.getElementById("task-editor");
+
+    // Show the task editor so that the user can create a new task
+    taskEditor.removeAttribute("hidden");
+});
