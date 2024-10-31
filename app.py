@@ -1,8 +1,14 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-@app.route('/')
+TASKS = []
+
+@app.route('/', methods=['GET','POST'])
 def index():
-    return render_template("index.html")
+    if request.method == 'POST':
+        title = request.form['title']
+        description = request.form['description']
+        TASKS.append({"title" : title, "description" : description})    
+    return render_template("index.html", tasks=TASKS)
 
