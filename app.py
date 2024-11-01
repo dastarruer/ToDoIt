@@ -22,6 +22,11 @@ def index():
         title = request.form['title']
         description = request.form['description']
 
+        # Check if the title is empty
+        if title == "":
+            # Just redirect the user to the main page, so that nothing gets added to their tasks
+            return redirect("/")
+
         # Add the task to the database
         db.execute("INSERT INTO tasks (user_id, title, description) VALUES(?, ?, ?)", (user_id, title, description))
 
