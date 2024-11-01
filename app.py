@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
 
 app = Flask(__name__)
@@ -26,6 +26,8 @@ def index():
         db.execute("INSERT INTO tasks (user_id, title, description) VALUES(?, ?, ?)", (user_id, title, description))
 
         conn.commit()
+
+        return redirect(url_for("index"))
 
     tasks = db.execute("SELECT title, description FROM tasks WHERE user_id = ?", [user_id]).fetchall()
 
