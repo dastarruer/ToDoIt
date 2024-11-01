@@ -25,10 +25,13 @@ def index():
         # Add the task to the database
         db.execute("INSERT INTO tasks (user_id, title, description) VALUES(?, ?, ?)", (user_id, title, description))
 
+        # Finalize the transaction
         conn.commit()
 
+        # This ensures that the browser does not ask for form resubmission after reloading the page
         return redirect(url_for("index"))
 
+    # Get all the user's tasks  
     tasks = db.execute("SELECT title, description FROM tasks WHERE user_id = ?", [user_id]).fetchall()
 
     conn.close()
