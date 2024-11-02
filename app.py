@@ -44,6 +44,15 @@ def index():
 
     return render_template("index.html", tasks=tasks)
 
-@app.route("/register")
+@app.route("/register", methods=['GET','POST'])
 def register():
+    if request.method == "POST":
+        # conn = get_db_connection()
+        # db = conn.cursor()
+
+        # username = request.form["username"]
+        # password = request.form["password"]
+        return render_template("register.html")
+
+
     return render_template("register.html")
