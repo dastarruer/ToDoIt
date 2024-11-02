@@ -3,21 +3,23 @@
 {% block title %}ToDoIt{% endblock %} 
 
 {% block body%}
-    <div id="header">Tasks</div>
-    <button id="add-task" class="btn">Add task <i class="bi bi-plus-lg"></i></button> 
-    <form class="unfinished-task" id="task-editor" hidden autocomplete="off" method="POST">
-        <input name="title" id="title-editor" class="task-title" placeholder="Add task title..."></input>
-        <br>
-        <input name="description" class="description" id="description-editor" placeholder="Add description..."></input>
-        <br>
-        <button id="submit-task" type="submit">Add task <i class="bi bi-plus-lg"></i></button>
-        <button id="cancel-task-editor" type="btn">Cancel</button>
-    </form>
-    {% for task in tasks %}
-        <div class="unfinished-task">
-            <div class="task-title">{{ task.title }}</div>
-            <div class="description">{{ task.description }}</div>
-            <input type="checkbox" class="checkbox"></input>
+    <div class="container">
+        <div id="header">Tasks</div>
+        <button id="add-task" class="btn">Add task <i class="bi bi-plus-lg"></i></button> 
+        <form class="unfinished-task" id="task-editor" hidden autocomplete="off" method="POST">
+            <input name="title" id="title-editor" class="task-title" placeholder="Add task title..."></input>
+            <br>
+            <input name="description" class="description" id="description-editor" placeholder="Add description..."></input>
+            <br>
+            <button id="submit-task" type="submit">Add task <i class="bi bi-plus-lg"></i></button>
+            <button id="cancel-task-editor" type="btn">Cancel</button>
+        </form>
+        {% for task in tasks %}
+            <div class="unfinished-task">
+                <div class="task-title">{{ task.title }}</div>
+                <div class="description">{{ task.description }}</div>
+                <input type="checkbox" class="checkbox"></input>
+            </div>
         </div>
     {% endfor %}
 {% endblock %}

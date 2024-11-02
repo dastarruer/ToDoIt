@@ -3,7 +3,7 @@ import sqlite3
 
 app = Flask(__name__)
 
-user_id = 1
+USER_ID = 1
 
 
 def get_db_connection():
@@ -17,6 +17,7 @@ def get_db_connection():
 def index():
     conn = get_db_connection()
     db = conn.cursor()
+
     if request.method == 'POST':
         # Get the title and description of the task the user wants to add
         title = request.form['title']
@@ -28,7 +29,7 @@ def index():
             return redirect("/")
 
         # Add the task to the database
-        db.execute("INSERT INTO tasks (user_id, title, description) VALUES(?, ?, ?)", (user_id, title, description))
+        db.execute("INSERT INTO tasks (user_id, title, description) VALUES(?, ?, ?)", (USER_ID, title, description))
 
         # Finalize the transaction
         conn.commit()
@@ -37,8 +38,12 @@ def index():
         return redirect(url_for("index"))
 
     # Get all the user's tasks  
-    tasks = db.execute("SELECT title, description FROM tasks WHERE user_id = ?", [user_id]).fetchall()
+    tasks = db.execute("SELECT title, description FROM tasks WHERE user_id = ?", [USER_ID]).fetchall()
 
     conn.close()
 
     return render_template("index.html", tasks=tasks)
+
+@app.route("/register")
+def register():
+    return render_template("register.html")
