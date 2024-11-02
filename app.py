@@ -47,12 +47,16 @@ def index():
 @app.route("/register", methods=['GET','POST'])
 def register():
     if request.method == "POST":
-        # conn = get_db_connection()
-        # db = conn.cursor()
+        conn = get_db_connection()
+        db = conn.cursor()
 
-        # username = request.form["username"]
-        # password = request.form["password"]
-        return render_template("register.html")
+        username = request.form["username"]
+        password = request.form["password"]
+        confirm_password = request.form["confirm-password"]
+
+        if password != confirm_password:
+            # Tell the user that confirm-password needs to be the same as password
+            return render_template("register.html", error="Password must be same as Confirm Password")
 
 
     return render_template("register.html")

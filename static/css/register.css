@@ -24,7 +24,7 @@ input {
 
 #error {
     color: red;
-    
+    margin-bottom: 1rem;
 }
 
 .container {
@@ -38,6 +38,8 @@ input {
     transform: translate(-50%, -50%);
 
     gap: 1rem;
+
+    align-items: center;
 }
 
 .header {
