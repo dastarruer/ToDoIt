@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+
+    /* Center everything */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    gap: 1rem;
+}
+
+.header {
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    margin-right: 3rem;
+
+    font-size: 2rem;
+    font-family: "JetBrains Mono";
+    font-weight: 600;
+}

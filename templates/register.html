@@ -1,6 +1,7 @@
 {% extends "layout.html" %} 
 
 {% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="static/css/global.css">
     <link rel="stylesheet" type="text/css" href="static/css/register.css">
 {% endblock %}
 
@@ -9,12 +10,14 @@
 {% block body%}
     <div class="container">
         <div class="header">Register</div>
-        <form method="POST">
+        <form method="POST" autocomplete="off">
             <input name="username" placeholder="Username..."></input>
             <br>
-            <input name="password" placeholder="Password..."></input>
+            <input type="password" name="password" placeholder="Password..."></input>
             <br>
             <input name="confirm-password" placeholder="Confirm password..."></input>
+            <br>
+            <button type="submit">Create account</button>
         </form>
     </div>
 {% endblock %}
