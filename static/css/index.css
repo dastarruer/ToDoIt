@@ -3,13 +3,6 @@ body {
     color: white;
 }
 
-#header {
-    margin-top: 3rem;
-    margin-bottom: 2rem;
-    font-size: 2rem;
-    font-family: "JetBrains Mono";
-    font-weight: 600;
-}
 
 #add-task {
     color: white;
@@ -19,7 +12,7 @@ body {
     border-color: transparent;
     border-color: transparent;
     border-radius: 1rem;
-
+    
     padding: 0.3rem;
     margin-top: 0.3rem;
     margin-bottom: 0.3rem;
@@ -28,10 +21,10 @@ body {
 #submit-task {
     background-color: red;
     color: white;
-
+    
     border-color: transparent;
     border-radius: 1rem;
-
+    
     padding: 0.3rem;
     margin-top: 0.3rem;
     margin-bottom: 0.3rem;
@@ -40,13 +33,21 @@ body {
 #cancel-task-editor {
     background-color: grey;
     color: white;
-
+    
     border-color: transparent;
     border-radius: 1rem;
-
+    
     padding: 0.3rem;
     margin-top: 0.3rem;
     margin-bottom: 0.3rem;
+}
+
+.header {
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-family: "JetBrains Mono";
+    font-weight: 600;
 }
 
 .container {

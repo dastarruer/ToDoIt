@@ -1,7 +1,20 @@
 {% extends "layout.html" %} 
 
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="static/css/register.css">
+{% endblock %}
+
 {% block title %}Register{% endblock %} 
 
 {% block body%}
-    
+    <div class="container">
+        <div class="header">Register</div>
+        <form method="POST">
+            <input name="username" placeholder="Username..."></input>
+            <br>
+            <input name="password" placeholder="Password..."></input>
+            <br>
+            <input name="confirm-password" placeholder="Confirm password..."></input>
+        </form>
+    </div>
 {% endblock %}
