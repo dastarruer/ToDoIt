@@ -5,20 +5,20 @@ checkboxes = document.getElementsByClassName("checkbox");
 cancelTask = document.getElementById("cancel-task-editor");
 
 for (let checkbox of checkboxes) {
-    checkbox.addEventListener("click", (event) => {
+    checkbox.addEventListener("change", (event) => {
         // Prevent form from submitting a GET/POST request
         event.preventDefault();
 
-        const taskId = document.getElementById("task-id").innerHTML;
-        const status = document.getElementById("status").value;
+        const taskId = checkbox.dataset.taskId;
+        const status = checkbox.dataset.status;
 
         const data = {
             taskId: taskId,
-            status: status,
+            status: status
         };
         console.log(data);
 
-        // Send the PATCH request
+        // Send the PATCH request with the data
         fetch("/", {
             method: "PATCH",
             headers: {
@@ -26,6 +26,7 @@ for (let checkbox of checkboxes) {
             },
             body: JSON.stringify(data),
         })
+            // After getting a response back, log the JSON
             .then((response) => response.json())
             .then((data) => console.log(data));
     });
