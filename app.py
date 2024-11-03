@@ -1,9 +1,21 @@
 from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
+from flask_session import Session
+from werkzeug.security import generate_password_hash
 
 app = Flask(__name__)
 
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
+
 USER_ID = 1
+
+
+def isNull(parameter):
+    if parameter == "":
+        return True
+    return False
 
 
 def get_db_connection():
@@ -23,21 +35,18 @@ def index():
         title = request.form['title']
         description = request.form['description']
 
-        # Check if the title is empty
-        if title == "":
+        if isNull(title):
             # Just redirect the user to the main page, so that nothing gets added to their tasks
             return redirect("/")
 
         # Add the task to the database
         db.execute("INSERT INTO tasks (user_id, title, description) VALUES(?, ?, ?)", (USER_ID, title, description))
 
-        # Finalize the transaction
         conn.commit()
 
         # This ensures that the browser does not ask for form resubmission after reloading the page
         return redirect(url_for("index"))
 
-    # Get all the user's tasks  
     tasks = db.execute("SELECT title, description FROM tasks WHERE user_id = ?", [USER_ID]).fetchall()
 
     conn.close()
@@ -54,9 +63,20 @@ def register():
         password = request.form["password"]
         confirm_password = request.form["confirm-password"]
 
-        if password != confirm_password:
-            # Tell the user that confirm-password needs to be the same as password
-            return render_template("register.html", error="Password must be same as Confirm Password")
+        if isNull(username) or isNull(password):
+            error = "Username/Password cannot be empty"
+            return render_template("register.html", error=error)
 
+        elif password != confirm_password:
+            error = "Password must be same as Confirm Password"
+            return render_template("register.html", error=error)
+        
+        # Hash the password
+        hash = generate_password_hash(password, salt_length=8)
 
+        # Add the user to the database
+        db.execute("INSERT INTO users (username, hash) VALUES(?, ?)", (username, hash))
+
+        # Finalize the transaction
+        conn.commit()        
     return render_template("register.html")
