@@ -117,7 +117,7 @@ def login():
             return render_template("login.html", error=error)
         
         # Set the user id to the current user's id, so that the page remembers them
-        session["user_id"] = user["id"]
+        session["user_id"] = user[0]["id"]
 
         return redirect("/")
     return render_template("login.html")
