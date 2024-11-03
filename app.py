@@ -30,7 +30,7 @@ def get_db_connection():
     return conn
 
 
-@app.route('/', methods=['GET','POST'])
+@app.route('/', methods=['GET','POST', 'PATCH'])
 def index():
     conn = get_db_connection()
     db = conn.cursor()
@@ -52,7 +52,12 @@ def index():
         # This ensures that the browser does not ask for form resubmission after reloading the page
         return redirect(url_for("index"))
 
+    # If the user requests to change the status of their tasks
+    elif request.method == "PATCH":
+        return render_template("index.html")
+    
     tasks = db.execute("SELECT title, description FROM tasks WHERE user_id = ?", [session["user_id"]]).fetchall()
+
 
     conn.close()
 
