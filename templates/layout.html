@@ -6,20 +6,15 @@
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,500;1,500&display=swap"
-            rel="stylesheet"
-        />
-        <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
-        />
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,500;1,500&display=swap"rel="stylesheet"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"/>
+        <link rel="stylesheet" type="text/css" href="static/css/global.css">
         {% block stylesheet %}{% endblock %}
 
         <script src="static/script.js" defer></script>
 
         <title>{% block title %}{% endblock %}</title>
-    </head>
+    </head> 
     <body>
         <nav>
             <ul>
@@ -27,6 +22,7 @@
                 <li><a id="login-page-link"onclick="window.location.href='login'">Login</a></li>
             </ul>
         </nav>
+        <br>
         {% block body %}{% endblock %}
     </body>
 </html>
