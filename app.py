@@ -16,9 +16,9 @@ def isNull(parameter):
     return False
 
 
-def isUserValid(user: dict, password: str):
+def isUserValid(user: list, password: str):
     # If there is no user with the given username, or the password was inputted incorrectly
-    if len(user) < 1 or not check_password_hash(user["hash"], password):
+    if len(user) < 1 or not check_password_hash(user[0]["hash"], password):
         return False
     return True
 
@@ -108,7 +108,7 @@ def login():
         db = conn.cursor()
 
         # Query database for username
-        user = db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchall()[0]
+        user = db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchall()
 
         conn.close()
 
