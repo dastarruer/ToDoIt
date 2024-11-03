@@ -4,20 +4,32 @@ checkboxes = document.getElementsByClassName("checkbox");
 
 cancelTask = document.getElementById("cancel-task-editor");
 
-
 for (let checkbox of checkboxes) {
     checkbox.addEventListener("click", (event) => {
         // Prevent form from submitting a GET/POST request
-        event.preventDefault()
+        event.preventDefault();
 
-        const taskId = document.getElementById("task-id")
+        const taskId = document.getElementById("task-id").innerHTML;
+        const status = document.getElementById("status").value;
 
         const data = {
-            taskId: taskId 
-        }
+            taskId: taskId,
+            status: status,
+        };
+        console.log(data);
+
+        // Send the PATCH request
+        fetch("/", {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        })
+            .then((response) => response.json())
+            .then((data) => console.log(data));
     });
 }
-
 
 // If the add task button is clicked
 addTask.addEventListener("click", (event) => {
@@ -32,4 +44,4 @@ cancelTask.addEventListener("click", (event) => {
 
     // Hide the task editor
     taskEditor.setAttribute("hidden", "");
-})
+});

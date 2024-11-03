@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, session, url_for
+from flask import Flask, jsonify, render_template, redirect, request, session, url_for
 import sqlite3
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -29,7 +29,7 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
-
+# TODO: Make decorator that reroutes user to login page if they are not logged in
 @app.route('/', methods=['GET','POST', 'PATCH'])
 def index():
     conn = get_db_connection()
@@ -57,21 +57,20 @@ def index():
         UNFINISHED = 0
         FINISHED = 1
 
-        task_id = request.form["task-id"]
-        current_task_status_code = request.form["status"]
+        task_id = request.form.get("taskId")
+        current_task_status_code = request.form.get("status")
 
         # If the task is unfinished, set the task's status code to finished, otherwise set it to finished
         new_task_status_code = FINISHED if current_task_status_code == UNFINISHED else UNFINISHED
 
         # Change the task's status in the database
         db.execute("UPDATE tasks SET completed = ? WHERE id = ?", (new_task_status_code,task_id))
-
         conn.commit()
-        conn.close()
 
-        return redirect(url_for("index"))
+        conn.close()
+        return jsonify({"message": "Task status succesfully updated"}), 200
     
-    tasks = db.execute("SELECT title, description FROM tasks WHERE user_id = ?", [session["user_id"]]).fetchall()
+    tasks = db.execute("SELECT title, description, completed, id FROM tasks WHERE user_id = ?", [session["user_id"]]).fetchall()
 
 
     conn.close()
@@ -113,9 +112,6 @@ def register():
 
 @app.route("/login", methods=['GET','POST'])
 def login():
-    # Forget user id
-    session.clear()
-
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
@@ -136,6 +132,9 @@ def login():
             error = "Invalid credentials, please try again"
             return render_template("login.html", error=error)
         
+        # Forget user id
+        session.clear()
+
         # Set the user id to the current user's id, so that the page remembers them
         session["user_id"] = user[0]["id"]
 
