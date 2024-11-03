@@ -1,0 +1,22 @@
+{% extends "layout.html" %} 
+
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="static/css/global.css">
+    <link rel="stylesheet" type="text/css" href="static/css/login.css">
+{% endblock %}
+
+{% block title %}Login{% endblock %} 
+
+{% block body%}
+    <div class="container">
+        <div id="error">{{ error }}</div>
+        <div class="header">Login</div>
+        <form method="POST">
+            <input id="username"  name="username" placeholder="Username..."></input>
+            <br>
+            <input id="password" type="password" name="password" placeholder="Password..."></input>
+            <br>
+            <button id="login" type="submit">Login</button>
+        </form>
+    </div>
+{% endblock %}

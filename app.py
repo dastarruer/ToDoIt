@@ -13,7 +13,7 @@ USER_ID = 1
 
 
 def isNull(parameter):
-    if parameter == "":
+    if not parameter:
         return True
     return False
 
@@ -80,3 +80,7 @@ def register():
         # Finalize the transaction
         conn.commit()        
     return render_template("register.html")
+
+@app.route("/login", methods=['GET','POST'])
+def login():
+    return render_template("login.html")
