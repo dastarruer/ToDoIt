@@ -54,7 +54,22 @@ def index():
 
     # If the user requests to change the status of their tasks
     elif request.method == "PATCH":
-        return render_template("index.html")
+        UNFINISHED = 0
+        FINISHED = 1
+
+        task_id = request.form["task-id"]
+        current_task_status_code = request.form["status"]
+
+        # If the task is unfinished, set the task's status code to finished, otherwise set it to finished
+        new_task_status_code = FINISHED if current_task_status_code == UNFINISHED else UNFINISHED
+
+        # Change the task's status in the database
+        db.execute("UPDATE tasks SET completed = ? WHERE id = ?", (new_task_status_code,task_id))
+
+        conn.commit()
+        conn.close()
+
+        return redirect(url_for("index"))
     
     tasks = db.execute("SELECT title, description FROM tasks WHERE user_id = ?", [session["user_id"]]).fetchall()
 
