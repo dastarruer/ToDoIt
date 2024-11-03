@@ -14,7 +14,7 @@ for (let checkbox of checkboxes) {
 
         const data = {
             taskId: taskId,
-            status: status
+            status: status,
         };
         console.log(data);
 
@@ -26,9 +26,13 @@ for (let checkbox of checkboxes) {
             },
             body: JSON.stringify(data),
         })
-            // After getting a response back, log the JSON
+            // After getting a response back
             .then((response) => response.json())
-            .then((data) => console.log(data));
+            // Log the JSON response and reload the page
+            .then((data) => {
+                console.log(data);
+                location.reload();
+            });
     });
 }
 

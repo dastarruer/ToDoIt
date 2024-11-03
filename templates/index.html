@@ -20,7 +20,7 @@
             <button id="cancel-task-editor" type="btn">Cancel</button>
         </form>
         {% for task in tasks %}
-            <form class="{% if task.completed == 0 %}unfinished-task{% else %} finished-task{% endif %}">
+            <form class="{% if task.completed == 0 %}unfinished-task{% else %} finished-task{% endif %}" autocomplete="off">
                 <div class="task-title">{{ task.title }}</div>
                 <div class="description">{{ task.description }}</div>
                 <input type="checkbox" class="checkbox" data-task-id="{{ task.id }}" data-status="{{ task.completed }}" {% if task.completed == 1 %}checked{% else %}unchecked{% endif %}></input>
