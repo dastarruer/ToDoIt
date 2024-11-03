@@ -71,7 +71,7 @@ def index():
         conn.close()
         return jsonify({"message": f"Task status succesfully updated to {new_task_status_code}"}), 200
     
-    tasks = db.execute("SELECT title, description, completed, id FROM tasks WHERE user_id = ?", [session["user_id"]]).fetchall()
+    tasks = db.execute("SELECT title, description, completed, id FROM tasks WHERE user_id = ?", (session["user_id"],)).fetchall()
 
     conn.close()
 
