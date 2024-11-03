@@ -17,6 +17,7 @@ def isNull(parameter):
 
 
 def isUserValid(user: dict, password: str):
+    # If there is no user with the given username, or the password was inputted incorrectly
     if len(user) < 1 or not check_password_hash(user["hash"], password):
         return False
     return True
