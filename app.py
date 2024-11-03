@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, render_template, redirect, request, session, url_for
-import sqlite3
 from flask_session import Session
+from functools import wraps
+import sqlite3
 from werkzeug.security import check_password_hash, generate_password_hash
 
 app = Flask(__name__)
@@ -9,6 +10,21 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
+
+def login_required(f):
+    """
+    Decorate routes to require login.
+
+    https://flask.palletsprojects.com/en/latest/patterns/viewdecorators/
+    """
+
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session.get("user_id") is None:
+            return redirect("/login")
+        return f(*args, **kwargs)
+
+    return decorated_function
 
 def isNull(parameter):
     if not parameter:
@@ -31,6 +47,7 @@ def get_db_connection():
 
 # TODO: Make decorator that reroutes user to login page if they are not logged in
 @app.route('/', methods=['GET','POST', 'PATCH'])
+@login_required
 def index():
     conn = get_db_connection()
     db = conn.cursor()
