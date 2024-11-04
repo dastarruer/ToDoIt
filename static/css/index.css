@@ -1,7 +1,6 @@
 #header {
     margin-top: 5rem;
     margin-bottom: 2rem;
-    margin-left: -2.5rem;
     font-size: 2rem;
     font-weight: 600;
 }
@@ -18,7 +17,6 @@
     padding: 0.7rem;
     margin-top: 0.3rem;
     margin-bottom: 0.3rem;
-    margin-left: -2.5rem;
 }
 
 #submit-task {
@@ -46,7 +44,7 @@
 }
 
 .container {
-    margin-left: 2rem;
+    /* margin-left: 2rem; */
 
     display: flex;
     flex-direction: column;
