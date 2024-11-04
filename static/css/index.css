@@ -19,8 +19,12 @@
     margin-bottom: 0.3rem;
 }
 
-#submit-task {
+#add-task:hover {
     background-color: red;
+}
+
+#submit-task {
+    background-color: grey;
     color: white;
 
     border-color: transparent;
@@ -31,8 +35,13 @@
     margin-bottom: 0.3rem;
 }
 
+#submit-task:hover {
+    background-color: red;
+}
+
+
 #cancel-task-editor {
-    background-color: grey;
+    background-color: transparent;
     color: white;
 
     border-color: transparent;
@@ -41,6 +50,10 @@
     padding: 0.3rem;
     margin-top: 0.3rem;
     margin-bottom: 0.3rem;
+}
+
+#cancel-task-editor:hover {
+    background-color: grey;
 }
 
 .container {
