@@ -19,10 +19,16 @@ a {
 
     margin-top: 1rem;
     margin-left: 1rem;
-    padding: 1rem;
+
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
 
     border-radius: 15px;
+
+    background-color: gray;
 }
 a:hover {
-    background-color: grey;
+    background-color: red;
 }
