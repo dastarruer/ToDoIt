@@ -103,15 +103,15 @@ def register():
 
         username = request.form["username"]
         password = request.form["password"]
-        confirm_password = request.form["confirm-password"]
+        # confirm_password = request.form["confirm-password"]
 
         if isNull(username) or isNull(password):
             error = "Username/Password cannot be empty"
             return render_template("register.html", error=error)
 
-        elif password != confirm_password:
-            error = "Password must be same as Confirm Password"
-            return render_template("register.html", error=error)
+        # elif password != confirm_password:
+        #     error = "Password must be same as Confirm Password"
+        #     return render_template("register.html", error=error)
         
         # Hash the password
         hash = generate_password_hash(password, salt_length=8)
@@ -124,7 +124,7 @@ def register():
 
         conn.close()  
 
-        return render_template("login.html")     
+        return redirect("/")     
     return render_template("register.html")
 
 @app.route("/login", methods=['GET','POST'])
@@ -156,7 +156,8 @@ def login():
         session["user_id"] = user[0]["id"]
 
         return redirect("/")
-    return render_template("login.html")
+    else:
+        return render_template("login.html")
 
 if __name__ == "__app.py__":
     app.run(debug=True)
